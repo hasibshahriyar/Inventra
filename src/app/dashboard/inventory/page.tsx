@@ -182,7 +182,7 @@ export default function InventoryPage() {
               <tbody>
                 {filtered.map((product) => (
                   <tr key={product.id} className="border-b border-border/30 last:border-0 hover:bg-surface-hover/50 transition-colors">
-                    <td className="px-5 py-4">
+                    <td className="px-5 py-4 max-w-0 w-[30%]">
                       <div className="flex items-center gap-3">
                         {product.image_url ? (
                           <img src={product.image_url} alt={product.name} className="w-10 h-10 rounded-lg object-cover shrink-0" />
@@ -191,10 +191,10 @@ export default function InventoryPage() {
                             <Package className="w-5 h-5 text-blue-400" />
                           </div>
                         )}
-                        <div>
-                          <p className="text-sm font-semibold truncate max-w-[150px] sm:max-w-[200px] lg:max-w-[250px]">{product.name}</p>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-semibold truncate">{product.name}</p>
                           {product.description && (
-                            <p className="text-xs text-muted truncate max-w-[150px] sm:max-w-[200px] lg:max-w-[250px]">{product.description}</p>
+                            <p className="text-xs text-muted truncate">{product.description}</p>
                           )}
                         </div>
                       </div>
