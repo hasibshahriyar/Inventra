@@ -122,11 +122,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto relative">
-        <div className="absolute top-6 right-8 z-40">
+      <main className="flex-1 overflow-auto flex flex-col">
+        <header className="sticky top-0 z-40 flex items-center justify-end px-6 lg:px-8 h-16 bg-background/80 backdrop-blur-md border-b border-border/50 shrink-0">
           <NotificationBell />
-        </div>
-        <div className="max-w-7xl mx-auto p-6 lg:p-8 mt-10 lg:mt-0">
+        </header>
+        <div className="max-w-7xl mx-auto w-full p-6 lg:p-8">
           {children}
         </div>
       </main>
