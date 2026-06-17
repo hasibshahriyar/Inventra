@@ -157,7 +157,7 @@ export default function AddProductPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder focus:border-orange-500 transition-all"
                   placeholder="e.g. Wireless Noise-Cancelling Headphones"
                 />
               </div>
@@ -169,7 +169,7 @@ export default function AddProductPage() {
                     type="text"
                     value={formData.sku}
                     onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 font-mono transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder focus:border-orange-500 font-mono transition-all"
                     placeholder="PRD-001"
                   />
                 </div>
@@ -179,7 +179,7 @@ export default function AddProductPage() {
                     type="text"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder focus:border-orange-500 transition-all"
                     placeholder="Electronics"
                   />
                 </div>
@@ -191,7 +191,7 @@ export default function AddProductPage() {
                   rows={4}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all resize-none"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder focus:border-orange-500 transition-all resize-none"
                   placeholder="Product description and details..."
                 />
               </div>

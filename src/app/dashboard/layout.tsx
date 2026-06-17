@@ -99,9 +99,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {!collapsed && user && (
           <div className="px-4 py-3 border-t border-border/50">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full gradient-orange flex items-center justify-center text-xs font-bold text-white">
-                {user.email?.[0]?.toUpperCase() ?? 'U'}
-              </div>
+              {user.user_metadata?.avatar_url ? (
+                <img 
+                  src={user.user_metadata.avatar_url} 
+                  alt="Profile" 
+                  className="w-8 h-8 rounded-full object-cover border border-border" 
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full gradient-orange flex items-center justify-center text-xs font-bold text-white">
+                  {user.user_metadata?.full_name?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
+                </div>
+              )}
               <div className="min-w-0">
                 <p className="text-xs font-medium text-foreground truncate">{user.email}</p>
                 <p className="text-[10px] text-muted">Free Plan</p>

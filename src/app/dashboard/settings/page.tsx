@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
-import { User, Moon, Sun, Shield, Bell, Key, LogOut, Construction, Save, Loader2 } from 'lucide-react';
+import { User, Moon, Sun, Shield, Bell, Key, LogOut, Construction, Save, Loader2, Camera } from 'lucide-react';
+import { uploadProductImage } from '@/lib/inventoryService';
 
 type Tab = 'profile' | 'appearance' | 'notifications' | 'security';
 
@@ -13,6 +14,7 @@ export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState<Tab>('profile');
 
   // Form states
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
   const [name, setName] = useState(user?.user_metadata?.full_name || '');
   const [isSavingName, setIsSavingName] = useState(false);
   const [nameMessage, setNameMessage] = useState('');
@@ -28,6 +30,28 @@ export default function SettingsPage() {
     { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'security', label: 'Security', icon: Key },
   ];
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) return;
+    const file = e.target.files[0];
+    setIsUploadingAvatar(true);
+    setNameMessage('');
+    
+    try {
+      const { url, error: uploadErr } = await uploadProductImage(file);
+      if (uploadErr) throw new Error(uploadErr);
+      if (url) {
+        const { error } = await updateProfile({ data: { avatar_url: url } });
+        if (error) throw new Error(error);
+        setNameMessage('Profile picture updated!');
+      }
+    } catch (err: any) {
+      setNameMessage(`Upload failed: ${err.message}`);
+    } finally {
+      setIsUploadingAvatar(false);
+      setTimeout(() => setNameMessage(''), 3000);
+    }
+  };
 
   const handleUpdateName = async () => {
     setIsSavingName(true);
@@ -104,8 +128,28 @@ export default function SettingsPage() {
               </div>
               
               <div className="flex items-center gap-6 mb-8">
-                <div className="w-20 h-20 rounded-full gradient-orange flex items-center justify-center text-2xl font-bold text-white shadow-lg">
-                  {user?.user_metadata?.full_name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? 'U'}
+                <div className="relative w-20 h-20 group">
+                  {user?.user_metadata?.avatar_url ? (
+                    <img 
+                      src={user.user_metadata.avatar_url} 
+                      alt="Profile" 
+                      className="w-full h-full rounded-full object-cover shadow-lg border-2 border-border" 
+                    />
+                  ) : (
+                    <div className="w-full h-full rounded-full gradient-orange flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                      {user?.user_metadata?.full_name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? 'U'}
+                    </div>
+                  )}
+                  <label className="absolute inset-0 flex items-center justify-center bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer z-10">
+                    {isUploadingAvatar ? <Loader2 className="w-5 h-5 animate-spin" /> : <Camera className="w-5 h-5" />}
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      className="hidden" 
+                      onChange={handleAvatarUpload} 
+                      disabled={isUploadingAvatar} 
+                    />
+                  </label>
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-foreground">

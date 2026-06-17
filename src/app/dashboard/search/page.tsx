@@ -50,7 +50,7 @@ export default function SearchPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="e.g. 'comfortable running shoes' or 'cheap electronics'..."
-            className="flex-1 bg-transparent border-none text-foreground px-4 py-3 focus:outline-none placeholder:text-muted text-lg"
+            className="flex-1 bg-transparent border-none text-foreground px-4 py-3 focus:outline-none placeholder:text-placeholder text-lg"
           />
           <button
             type="submit"

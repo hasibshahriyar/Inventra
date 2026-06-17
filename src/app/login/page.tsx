@@ -65,7 +65,7 @@ export default function LoginPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
+                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder transition-all"
                   autoComplete="email"
                 />
               </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
+                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder transition-all"
                   autoComplete="current-password"
                 />
                 <button

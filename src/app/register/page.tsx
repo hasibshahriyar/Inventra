@@ -101,7 +101,7 @@ export default function RegisterPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
+                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder transition-all"
                   autoComplete="email"
                 />
               </div>
@@ -119,7 +119,7 @@ export default function RegisterPage() {
                   placeholder="Min 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
+                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-placeholder transition-all"
                 />
                 <button
                   type="button"
@@ -143,7 +143,7 @@ export default function RegisterPage() {
                   placeholder="Re-enter password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`w-full pl-12 pr-12 py-3 bg-background border rounded-xl text-sm text-foreground placeholder:text-muted transition-all ${
+                  className={`w-full pl-12 pr-12 py-3 bg-background border rounded-xl text-sm text-foreground placeholder:text-placeholder transition-all ${
                     passwordsMismatch ? 'border-danger' : 'border-border'
                   }`}
                 />
