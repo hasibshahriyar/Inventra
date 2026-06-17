@@ -170,13 +170,13 @@ export default function InventoryPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border/50">
-                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Product</th>
-                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">SKU</th>
-                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Category</th>
-                  <th className="text-right text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Price</th>
-                  <th className="text-center text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Stock</th>
-                  <th className="text-center text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Status</th>
-                  <th className="text-right text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Actions</th>
+                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Product</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">SKU</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Category</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-end text-xs font-semibold text-muted uppercase tracking-wider">Price</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Stock</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Status</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-end text-xs font-semibold text-muted uppercase tracking-wider">Actions</div></th>
                 </tr>
               </thead>
               <tbody>
@@ -205,7 +205,9 @@ export default function InventoryPage() {
                         {product.category}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-sm text-right font-semibold">${product.price.toFixed(2)}</td>
+                    <td className="px-5 py-4">
+                      <div className="flex justify-end text-sm font-semibold">${product.price.toFixed(2)}</div>
+                    </td>
                     <td className="px-5 py-4">
                       <div className="flex items-center justify-center gap-2">
                         <button
@@ -223,14 +225,16 @@ export default function InventoryPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-center">
-                      <span className={`inline-block whitespace-nowrap text-xs font-semibold px-2.5 py-1 rounded-lg ${statusColor(product.stock_quantity, product.low_stock_threshold)}`}>
-                        {{
-                          out_of_stock: 'Out of Stock',
-                          low_stock: 'Low Stock',
-                          in_stock: 'In Stock'
-                        }[getStockStatus(product.stock_quantity, product.low_stock_threshold)]}
-                      </span>
+                    <td className="px-5 py-4">
+                      <div className="flex justify-center">
+                        <span className={`inline-block whitespace-nowrap text-xs font-semibold px-2.5 py-1 rounded-lg ${statusColor(product.stock_quantity, product.low_stock_threshold)}`}>
+                          {{
+                            out_of_stock: 'Out of Stock',
+                            low_stock: 'Low Stock',
+                            in_stock: 'In Stock'
+                          }[getStockStatus(product.stock_quantity, product.low_stock_threshold)]}
+                        </span>
+                      </div>
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex items-center justify-end gap-1.5">
