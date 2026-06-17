@@ -225,7 +225,11 @@ export default function InventoryPage() {
                     </td>
                     <td className="px-5 py-4 text-center">
                       <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg ${statusColor(product.stock_quantity, product.low_stock_threshold)}`}>
-                        {getStockStatus(product.stock_quantity, product.low_stock_threshold).replace('_', ' ')}
+                        {{
+                          out_of_stock: 'Out of Stock',
+                          low_stock: 'Low Stock',
+                          in_stock: 'In Stock'
+                        }[getStockStatus(product.stock_quantity, product.low_stock_threshold)]}
                       </span>
                     </td>
                     <td className="px-5 py-4">
