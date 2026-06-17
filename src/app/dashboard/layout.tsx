@@ -14,6 +14,8 @@ const navItems = [
   { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
 ];
 
+import NotificationBell from '@/components/NotificationBell';
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, signOut } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -120,8 +122,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
-        <div className="max-w-7xl mx-auto p-6 lg:p-8">
+      <main className="flex-1 overflow-auto relative">
+        <div className="absolute top-6 right-8 z-40">
+          <NotificationBell />
+        </div>
+        <div className="max-w-7xl mx-auto p-6 lg:p-8 mt-10 lg:mt-0">
           {children}
         </div>
       </main>

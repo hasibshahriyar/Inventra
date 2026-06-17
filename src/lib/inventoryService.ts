@@ -136,25 +136,34 @@ export const deleteProductImage = async (imageUrl: string): Promise<void> => {
 
 export const triggerLowStockAlert = async (
   productName: string,
-  currentStock: number
+  currentStock: number,
+  userId: string
 ): Promise<void> => {
   console.log(`[EDGE] Triggering alert for: ${productName} (stock: ${currentStock})`);
 
-  const { data, error } = await supabase.functions.invoke('low-stock-alert', {
-    body: {
-      message: currentStock === 0
-        ? `🚨 ALERT: "${productName}" is OUT OF STOCK!`
-        : `⚠️  WARNING: "${productName}" is low in stock (${currentStock} remaining)`,
-      product_name: productName,
-      stock: currentStock,
-      timestamp: new Date().toISOString(),
-    },
-  });
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
 
-  if (error) {
-    console.warn('[EDGE] low-stock-alert not available:', error.message);
-  } else {
-    console.log('[EDGE] Alert sent:', data);
+    const response = await fetch('/api/low-stock-alert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        product_name: productName,
+        stock: currentStock,
+        user_id: userId
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    
+    console.log('[EDGE] Alert sent successfully:', data);
+  } catch (error: any) {
+    console.warn('[EDGE] Failed to trigger alert:', error.message);
   }
 };
 

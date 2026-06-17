@@ -56,8 +56,8 @@ export default function InventoryPage() {
     const { error } = await updateProduct(product.id, { stock_quantity: newQty });
     if (!error) {
       // Feature 5: Edge Function — trigger low stock alert
-      if (newQty <= product.low_stock_threshold) {
-        await triggerLowStockAlert(product.name, newQty);
+      if (newQty <= product.low_stock_threshold && user) {
+        await triggerLowStockAlert(product.name, newQty, user.id);
       }
       if (user) {
         await logActivity(user.id, `Stock ${delta > 0 ? 'increased' : 'decreased'}`, product.name, `${product.stock_quantity} → ${newQty}`);
