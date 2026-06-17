@@ -20,7 +20,7 @@ export default function HomePage() {
       {/* Nav */}
       <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl gradient-orange flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl gradient-blue flex items-center justify-center">
             <Package className="w-5 h-5 text-foreground" />
           </div>
           <span className="text-xl font-bold tracking-tight">Inventra</span>
@@ -28,13 +28,13 @@ export default function HomePage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => router.push('/login')}
-            className="px-4 py-2 text-sm font-medium text-orange-300 hover:text-foreground transition-colors cursor-pointer"
+            className="px-4 py-2 text-sm font-medium text-blue-300 hover:text-foreground transition-colors cursor-pointer"
           >
             Sign in
           </button>
           <button
             onClick={() => router.push('/register')}
-            className="px-5 py-2.5 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+            className="px-5 py-2.5 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
           >
             Get Started
           </button>
@@ -45,7 +45,7 @@ export default function HomePage() {
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
         <div className="animate-fade-in max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass mb-8 text-sm text-orange-300 font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass mb-8 text-sm text-blue-300 font-medium">
             <Zap className="w-3.5 h-3.5" />
             Powered by Supabase — 6 Features Integrated
           </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
             Manage your inventory
             <br />
-            <span className="gradient-orange-text">like never before</span>
+            <span className="gradient-blue-text">like never before</span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
@@ -66,7 +66,7 @@ export default function HomePage() {
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={() => router.push('/register')}
-              className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold text-white gradient-orange rounded-2xl hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="flex items-center gap-2 px-8 py-3.5 text-base font-semibold text-white gradient-blue rounded-2xl hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               Start for Free
               <ArrowRight className="w-4 h-4" />
@@ -90,9 +90,9 @@ export default function HomePage() {
           ].map((f) => (
             <div
               key={f.label}
-              className="glass rounded-2xl p-5 text-center hover:border-orange-500/30 transition-all group cursor-default"
+              className="glass rounded-2xl p-5 text-center hover:border-blue-500/30 transition-all group cursor-default"
             >
-              <f.icon className="w-6 h-6 text-orange-400 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+              <f.icon className="w-6 h-6 text-blue-400 mx-auto mb-2 group-hover:scale-110 transition-transform" />
               <p className="text-sm font-semibold text-foreground">{f.label}</p>
               <p className="text-xs text-muted mt-1">{f.desc}</p>
             </div>

@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 h-16 border-b border-border/50`}>
           {!collapsed && (
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg gradient-orange flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg gradient-blue flex items-center justify-center">
                 <Package className="w-4 h-4 text-foreground" />
               </div>
               <span className="text-lg font-bold tracking-tight">Inventra</span>
@@ -62,12 +62,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 onClick={() => router.push(item.href)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-orange-500/15 text-orange-400'
+                    ? 'bg-blue-500/15 text-blue-400'
                     : 'text-muted hover:bg-surface-hover hover:text-foreground'
                 } ${collapsed ? 'justify-center' : ''}`}
                 title={collapsed ? item.label : undefined}
               >
-                <item.icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-orange-400' : ''}`} />
+                <item.icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-blue-400' : ''}`} />
                 {!collapsed && <span>{item.label}</span>}
               </button>
             );
@@ -106,7 +106,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   className="w-8 h-8 rounded-full object-cover border border-border" 
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full gradient-orange flex items-center justify-center text-xs font-bold text-white">
+                <div className="w-8 h-8 rounded-full gradient-blue flex items-center justify-center text-xs font-bold text-white">
                   {user.user_metadata?.full_name?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
                 </div>
               )}

@@ -7,7 +7,7 @@ import type { Product, ActivityLog } from '@/types';
 import { Package, AlertTriangle, XCircle, DollarSign, TrendingUp, Clock, Zap } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
-const CHART_COLORS = ['#f97316', '#fb923c', '#f59e0b', '#fbbf24', '#fdba74', '#ea580c'];
+const CHART_COLORS = ['#3b82f6', '#60a5fa', '#93c5fd', '#2563eb', '#1d4ed8', '#1e40af'];
 
 export default function DashboardPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -42,7 +42,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="w-8 h-8 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
       </div>
     );
   }
@@ -66,7 +66,7 @@ export default function DashboardPage() {
     .map(p => ({ name: p.name.length > 12 ? p.name.slice(0, 12) + '…' : p.name, stock: p.stock_quantity }));
 
   const stats = [
-    { label: 'Total Products', value: totalProducts, icon: Package, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+    { label: 'Total Products', value: totalProducts, icon: Package, color: 'text-blue-400', bg: 'bg-blue-500/10' },
     { label: 'Inventory Value', value: `$${totalValue.toLocaleString()}`, icon: DollarSign, color: 'text-success', bg: 'bg-success/10' },
     { label: 'Low Stock', value: lowStockCount, icon: AlertTriangle, color: 'text-amber-500', bg: 'bg-amber-500/10' },
     { label: 'Out of Stock', value: outOfStockCount, icon: XCircle, color: 'text-red-500', bg: 'bg-red-500/10' },
@@ -80,7 +80,7 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-sm text-muted mt-0.5">Overview of your inventory</p>
         </div>
-        <div className="flex items-center gap-2 text-xs text-orange-400 bg-orange-500/10 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-2 text-xs text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-full">
           <Zap className="w-3.5 h-3.5" />
           <span className="font-medium">Real-time enabled</span>
         </div>
@@ -89,12 +89,12 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="glass rounded-2xl p-5 hover:border-orange-500/20 transition-all group">
+          <div key={stat.label} className="glass rounded-2xl p-5 hover:border-blue-500/20 transition-all group">
             <div className="flex items-center justify-between mb-3">
               <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center`}>
                 <stat.icon className={`w-5 h-5 ${stat.color}`} />
               </div>
-              <TrendingUp className="w-4 h-4 text-slate-600 group-hover:text-orange-400 transition-colors" />
+              <TrendingUp className="w-4 h-4 text-slate-600 group-hover:text-blue-400 transition-colors" />
             </div>
             <p className="text-2xl font-bold tracking-tight">{stat.value}</p>
             <p className="text-xs text-muted mt-1">{stat.label}</p>
@@ -121,7 +121,7 @@ export default function DashboardPage() {
                     color: '#e2e8f0',
                   }}
                 />
-                <Bar dataKey="stock" fill="#f97316" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="stock" fill="#3b82f6" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (
@@ -183,7 +183,7 @@ export default function DashboardPage() {
       {/* Recent Activity */}
       <div className="glass rounded-2xl p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Clock className="w-4 h-4 text-orange-400" />
+          <Clock className="w-4 h-4 text-blue-400" />
           <h3 className="text-sm font-semibold">Recent Activity</h3>
         </div>
         {activity.length > 0 ? (

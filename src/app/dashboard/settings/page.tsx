@@ -105,7 +105,7 @@ export default function SettingsPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer whitespace-nowrap md:whitespace-normal ${
                   isActive 
-                    ? 'bg-orange-500/10 text-orange-400' 
+                    ? 'bg-blue-500/10 text-blue-400' 
                     : 'text-muted hover:text-foreground hover:bg-surface-hover'
                 }`}
               >
@@ -123,7 +123,7 @@ export default function SettingsPage() {
           {activeTab === 'profile' && (
             <div className="glass rounded-2xl p-6 animate-fade-in">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                <User className="w-5 h-5 text-orange-400" />
+                <User className="w-5 h-5 text-blue-400" />
                 <h2 className="text-lg font-semibold">Account Profile</h2>
               </div>
               
@@ -136,7 +136,7 @@ export default function SettingsPage() {
                       className="w-full h-full rounded-full object-cover shadow-lg border-2 border-border" 
                     />
                   ) : (
-                    <div className="w-full h-full rounded-full gradient-orange flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                    <div className="w-full h-full rounded-full gradient-blue flex items-center justify-center text-2xl font-bold text-white shadow-lg">
                       {user?.user_metadata?.full_name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? 'U'}
                     </div>
                   )}
@@ -172,12 +172,12 @@ export default function SettingsPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your full name"
-                      className="flex-1 px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
+                      className="flex-1 px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-blue-500 transition-all"
                     />
                     <button 
                       onClick={handleUpdateName}
                       disabled={isSavingName || name === (user?.user_metadata?.full_name || '')}
-                      className="px-4 py-2.5 bg-orange-500 text-white rounded-xl text-sm font-semibold hover:bg-orange-600 transition-colors disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                      className="px-4 py-2.5 bg-blue-500 text-white rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors disabled:opacity-50 cursor-pointer flex items-center gap-2"
                     >
                       {isSavingName ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                       Save
@@ -208,7 +208,7 @@ export default function SettingsPage() {
           {activeTab === 'appearance' && (
             <div className="glass rounded-2xl p-6 animate-fade-in">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                {theme === 'dark' ? <Moon className="w-5 h-5 text-orange-400" /> : <Sun className="w-5 h-5 text-warning" />}
+                {theme === 'dark' ? <Moon className="w-5 h-5 text-blue-400" /> : <Sun className="w-5 h-5 text-warning" />}
                 <h2 className="text-lg font-semibold">Appearance</h2>
               </div>
 
@@ -219,7 +219,7 @@ export default function SettingsPage() {
                 </div>
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-xl text-sm font-medium hover:border-orange-500/50 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-xl text-sm font-medium hover:border-blue-500/50 transition-colors cursor-pointer"
                 >
                   {theme === 'dark' ? (
                     <>
@@ -228,7 +228,7 @@ export default function SettingsPage() {
                     </>
                   ) : (
                     <>
-                      <Moon className="w-4 h-4 text-orange-400" />
+                      <Moon className="w-4 h-4 text-blue-400" />
                       Switch to Dark
                     </>
                   )}
@@ -241,7 +241,7 @@ export default function SettingsPage() {
           {activeTab === 'notifications' && (
             <div className="glass rounded-2xl p-6 animate-fade-in">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                <Bell className="w-5 h-5 text-orange-400" />
+                <Bell className="w-5 h-5 text-blue-400" />
                 <h2 className="text-lg font-semibold">Notifications</h2>
               </div>
               
@@ -261,7 +261,7 @@ export default function SettingsPage() {
               {/* Change Password */}
               <div className="glass rounded-2xl p-6">
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                  <Key className="w-5 h-5 text-orange-400" />
+                  <Key className="w-5 h-5 text-blue-400" />
                   <h2 className="text-lg font-semibold">Change Password</h2>
                 </div>
 
@@ -273,7 +273,7 @@ export default function SettingsPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter new password"
-                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-blue-500 transition-all"
                     />
                   </div>
                   <div>
@@ -283,13 +283,13 @@ export default function SettingsPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Confirm new password"
-                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-blue-500 transition-all"
                     />
                   </div>
                   <button 
                     onClick={handleUpdatePassword}
                     disabled={isSavingPassword || !password}
-                    className="px-4 py-2.5 mt-2 bg-orange-500 text-white rounded-xl text-sm font-semibold hover:bg-orange-600 transition-colors disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                    className="px-4 py-2.5 mt-2 bg-blue-500 text-white rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors disabled:opacity-50 cursor-pointer flex items-center gap-2"
                   >
                     {isSavingPassword ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                     Update Password

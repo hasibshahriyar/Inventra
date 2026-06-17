@@ -59,7 +59,7 @@ export default function RegisterPage() {
           </p>
           <button
             onClick={() => router.push('/login')}
-            className="px-6 py-3 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all cursor-pointer"
+            className="px-6 py-3 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-all cursor-pointer"
           >
             Go to Sign In
           </button>
@@ -73,7 +73,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl gradient-orange flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 rounded-2xl gradient-blue flex items-center justify-center mx-auto mb-4">
             <Package className="w-7 h-7 text-foreground" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Create Account</h1>
@@ -163,7 +163,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -180,7 +180,7 @@ export default function RegisterPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-muted">
               Already have an account?{' '}
-              <Link href="/login" className="text-orange-400 font-semibold hover:text-orange-300 transition-colors">
+              <Link href="/login" className="text-blue-400 font-semibold hover:text-blue-300 transition-colors">
                 Sign in <ArrowRight className="w-3 h-3 inline" />
               </Link>
             </p>

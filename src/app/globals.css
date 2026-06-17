@@ -11,17 +11,17 @@
    Custom Theme — CSS-first config (Tailwind v4)
    ============================================= */
 @theme {
-  /* Brand Colors (Orange Palette) */
-  --color-brand-50: #fff7ed;
-  --color-brand-100: #ffedd5;
-  --color-brand-200: #fed7aa;
-  --color-brand-300: #fdba74;
-  --color-brand-400: #fb923c;
-  --color-brand-500: #f97316;
-  --color-brand-600: #ea580c;
-  --color-brand-700: #c2410c;
-  --color-brand-800: #9a3412;
-  --color-brand-900: #7c2d12;
+  /* Brand Colors (Blue Palette) */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
 
   /* Semantic Theme Colors */
   --color-foreground: #e2e8f0;
@@ -67,8 +67,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.3); }
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.3); }
 }
 
 @keyframes shimmer {
@@ -93,7 +93,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(249, 115, 22, 0.3);
+  background: rgba(59, 130, 246, 0.3);
   color: #fff;
 }
 
@@ -136,26 +136,26 @@ body {
 @utility glass-hover {
   &:hover {
     background: rgba(18, 18, 26, 0.9);
-    border-color: rgba(249, 115, 22, 0.2);
+    border-color: rgba(59, 130, 246, 0.2);
   }
 }
 
 /* =============================================
    Gradient Utilities
    ============================================= */
-@utility gradient-orange {
-  background: linear-gradient(135deg, #f97316, #f59e0b, #fbbf24);
+@utility gradient-blue {
+  background: linear-gradient(135deg, #2563eb, #3b82f6, #93c5fd);
 }
 
-@utility gradient-orange-text {
-  background: linear-gradient(135deg, #fb923c, #fbbf24);
+@utility gradient-blue-text {
+  background: linear-gradient(135deg, #3b82f6, #93c5fd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 @utility gradient-subtle {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(245, 158, 11, 0.05));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(245, 158, 11, 0.05));
 }
 
 /* =============================================
@@ -183,7 +183,7 @@ body {
 
 .light-mode .glass-hover:hover {
   background: rgba(241, 245, 249, 0.9);
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 /* =============================================
@@ -191,6 +191,6 @@ body {
    ============================================= */
 input:not(.border-none):focus, textarea:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
   border-color: var(--color-brand-500);
 }

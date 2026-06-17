@@ -30,7 +30,7 @@ export default function SearchPage() {
     <div className="space-y-6 animate-fade-in max-w-4xl mx-auto">
       {/* Header */}
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium mb-6">
           <Sparkles className="w-4 h-4" />
           AI-Powered Semantic Search
         </div>
@@ -55,7 +55,7 @@ export default function SearchPage() {
           <button
             type="submit"
             disabled={loading || !query.trim()}
-            className="px-6 py-3 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
+            className="px-6 py-3 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
           </button>
@@ -76,7 +76,7 @@ export default function SearchPage() {
           {results.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {results.map((product) => (
-                <div key={product.id} className="glass rounded-2xl p-5 flex gap-4 hover:border-orange-500/30 transition-all group">
+                <div key={product.id} className="glass rounded-2xl p-5 flex gap-4 hover:border-blue-500/30 transition-all group">
                   {product.image_url ? (
                     <img src={product.image_url} alt={product.name} className="w-20 h-20 rounded-xl object-cover shrink-0" />
                   ) : (
@@ -88,7 +88,7 @@ export default function SearchPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start mb-1">
                       <h3 className="font-semibold text-foreground truncate pr-2">{product.name}</h3>
-                      <span className="text-xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">
+                      <span className="text-xs font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">
                         {(product.similarity * 100).toFixed(0)}% match
                       </span>
                     </div>
@@ -97,7 +97,7 @@ export default function SearchPage() {
                       <span className="font-bold text-sm">${product.price.toFixed(2)}</span>
                       <button
                         onClick={() => router.push(`/dashboard/add-product?edit=${product.id}`)}
-                        className="text-xs font-medium text-orange-400 hover:text-orange-300"
+                        className="text-xs font-medium text-blue-400 hover:text-blue-300"
                       >
                         Edit →
                       </button>
