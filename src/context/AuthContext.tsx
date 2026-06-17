@@ -9,6 +9,7 @@ interface AuthContextType {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signUp: (email: string, password: string) => Promise<{ error: string | null }>;
+  verifyOtp: (email: string, token: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: { password?: string; data?: { full_name?: string; avatar_url?: string } }) => Promise<{ error: string | null }>;
 }
@@ -41,6 +42,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error: error?.message ?? null };
   }, [supabase.auth]);
 
+  const verifyOtp = useCallback(async (email: string, token: string) => {
+    const { error, data } = await supabase.auth.verifyOtp({ email, token, type: 'signup' });
+    if (data?.session) {
+      setUser(data.session.user);
+    }
+    return { error: error?.message ?? null };
+  }, [supabase.auth]);
+
   const signOut = useCallback(async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -55,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [supabase.auth]);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, updateProfile }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, verifyOtp, signOut, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

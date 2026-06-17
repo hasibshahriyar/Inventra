@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { Package, Mail, Lock, Eye, EyeOff, UserPlus, ArrowRight, Check, X } from 'lucide-react';
+import { Package, Mail, Lock, Eye, EyeOff, UserPlus, ArrowRight, Check, X, KeyRound } from 'lucide-react';
 import Link from 'next/link';
 
 export default function RegisterPage() {
@@ -16,6 +16,8 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [otp, setOtp] = useState('');
+  const { verifyOtp } = useAuth();
 
   const passwordsMatch = confirmPassword.length > 0 && password === confirmPassword;
   const passwordsMismatch = confirmPassword.length > 0 && password !== confirmPassword;
@@ -45,24 +47,78 @@ export default function RegisterPage() {
     }
   };
 
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otp.trim() || otp.length !== 6) {
+      setError('Please enter a valid 6-digit code.');
+      return;
+    }
+    setError('');
+    setLoading(true);
+    const { error: verifyError } = await verifyOtp(email.trim(), otp.trim());
+    setLoading(false);
+    
+    if (verifyError) {
+      setError(verifyError);
+    } else {
+      router.replace('/dashboard');
+    }
+  };
+
   if (success) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="w-full max-w-md animate-fade-in text-center">
-          <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-6">
-            <Mail className="w-8 h-8 text-success" />
+          <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-6">
+            <KeyRound className="w-8 h-8 text-blue-400" />
           </div>
-          <h1 className="text-2xl font-bold mb-2">Check your email! 📧</h1>
+          <h1 className="text-2xl font-bold mb-2">Enter OTP Code</h1>
           <p className="text-muted text-sm mb-8">
-            We sent a confirmation link to <strong className="text-foreground">{email}</strong>.
-            Please verify your email to continue.
+            We sent a 6-digit confirmation code to <strong className="text-foreground">{email}</strong>.
           </p>
-          <button
-            onClick={() => router.push('/login')}
-            className="px-6 py-3 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-all cursor-pointer"
-          >
-            Go to Sign In
-          </button>
+          
+          <form onSubmit={handleVerifyOtp} className="space-y-5 text-left bg-card p-8 rounded-3xl border border-border">
+            {error && (
+              <div className="bg-danger/10 border border-danger/20 rounded-xl px-4 py-3 text-sm text-danger text-center">
+                {error}
+              </div>
+            )}
+            
+            <div>
+              <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2 text-center">
+                6-Digit Code
+              </label>
+              <input
+                type="text"
+                placeholder="123456"
+                maxLength={6}
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                className="w-full text-center tracking-[0.5em] font-mono text-2xl py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-placeholder transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading || otp.length !== 6}
+              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white gradient-blue rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+            >
+              {loading ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                'Verify & Continue'
+              )}
+            </button>
+          </form>
+          
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => setSuccess(false)}
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              ← Use a different email
+            </button>
+          </div>
         </div>
       </div>
     );
