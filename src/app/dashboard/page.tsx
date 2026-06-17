@@ -113,6 +113,7 @@ export default function DashboardPage() {
                 <XAxis dataKey="name" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip
+                  cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }}
                   contentStyle={{
                     background: '#1a1a25',
                     border: '1px solid rgba(255,255,255,0.1)',
