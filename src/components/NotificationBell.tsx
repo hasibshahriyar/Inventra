@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Bell, Check, Trash2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/context/AuthContext';
+import { useRouter, usePathname } from 'next/navigation';
 
 type Notification = {
   id: string;
@@ -16,9 +17,28 @@ type Notification = {
 
 export default function NotificationBell() {
   const { user } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const bellRef = useRef<HTMLDivElement>(null);
   const supabase = createClient();
+
+  useEffect(() => {
+    // Close on click outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (bellRef.current && !bellRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    // Close when navigating to another page
+    setIsOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!user) return;
@@ -63,6 +83,8 @@ export default function NotificationBell() {
 
   const markAsRead = async (id: string) => {
     setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
+    setIsOpen(false);
+    router.push('/dashboard/inventory');
     await supabase.from('notifications').update({ is_read: true }).eq('id', id);
   };
 
@@ -77,7 +99,7 @@ export default function NotificationBell() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={bellRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative p-2 rounded-full bg-surface-hover hover:bg-border transition-colors cursor-pointer"
