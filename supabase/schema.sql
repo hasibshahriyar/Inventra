@@ -142,6 +142,30 @@ BEGIN
 END $$;
 
 -- =============================================
--- Storage bucket (run manually in Supabase dashboard)
--- CREATE bucket: product-images (public)
+-- Storage bucket and Policies
 -- =============================================
+
+-- Create the bucket if it doesn't exist
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('product-images', 'product-images', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- Allow public viewing of images
+DROP POLICY IF EXISTS "Public Access" ON storage.objects;
+CREATE POLICY "Public Access" ON storage.objects FOR SELECT
+USING (bucket_id = 'product-images');
+
+-- Allow authenticated users to upload images
+DROP POLICY IF EXISTS "Auth Upload" ON storage.objects;
+CREATE POLICY "Auth Upload" ON storage.objects FOR INSERT
+WITH CHECK (bucket_id = 'product-images' AND auth.role() = 'authenticated');
+
+-- Allow authenticated users to update their images
+DROP POLICY IF EXISTS "Auth Update" ON storage.objects;
+CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE
+USING (bucket_id = 'product-images' AND auth.role() = 'authenticated');
+
+-- Allow authenticated users to delete their images
+DROP POLICY IF EXISTS "Auth Delete" ON storage.objects;
+CREATE POLICY "Auth Delete" ON storage.objects FOR DELETE
+USING (bucket_id = 'product-images' AND auth.role() = 'authenticated');
