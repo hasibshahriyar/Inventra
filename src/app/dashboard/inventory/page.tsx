@@ -185,9 +185,9 @@ export default function InventoryPage() {
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
                         {product.image_url ? (
-                          <img src={product.image_url} alt={product.name} className="w-10 h-10 rounded-lg object-cover" />
+                          <img src={product.image_url} alt={product.name} className="w-10 h-10 rounded-lg object-cover shrink-0" />
                         ) : (
-                          <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
                             <Package className="w-5 h-5 text-blue-400" />
                           </div>
                         )}
