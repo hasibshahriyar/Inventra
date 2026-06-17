@@ -192,9 +192,9 @@ export default function InventoryPage() {
                           </div>
                         )}
                         <div>
-                          <p className="text-sm font-semibold">{product.name}</p>
+                          <p className="text-sm font-semibold truncate max-w-[150px] sm:max-w-[200px] lg:max-w-[250px]">{product.name}</p>
                           {product.description && (
-                            <p className="text-xs text-muted truncate max-w-[200px]">{product.description}</p>
+                            <p className="text-xs text-muted truncate max-w-[150px] sm:max-w-[200px] lg:max-w-[250px]">{product.description}</p>
                           )}
                         </div>
                       </div>
