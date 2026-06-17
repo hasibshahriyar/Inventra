@@ -117,7 +117,7 @@ export default function AddProductPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
       </div>
     );
   }
@@ -157,7 +157,7 @@ export default function AddProductPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all"
                   placeholder="e.g. Wireless Noise-Cancelling Headphones"
                 />
               </div>
@@ -169,7 +169,7 @@ export default function AddProductPage() {
                     type="text"
                     value={formData.sku}
                     onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 font-mono transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 font-mono transition-all"
                     placeholder="PRD-001"
                   />
                 </div>
@@ -179,7 +179,7 @@ export default function AddProductPage() {
                     type="text"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all"
                     placeholder="Electronics"
                   />
                 </div>
@@ -191,7 +191,7 @@ export default function AddProductPage() {
                   rows={4}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all resize-none"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted focus:border-orange-500 transition-all resize-none"
                   placeholder="Product description and details..."
                 />
               </div>
@@ -209,7 +209,7 @@ export default function AddProductPage() {
                     min="0"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
                   />
                 </div>
                 <div>
@@ -220,7 +220,7 @@ export default function AddProductPage() {
                     min="0"
                     value={formData.cost_price}
                     onChange={(e) => setFormData({ ...formData, cost_price: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
                   />
                 </div>
                 <div>
@@ -230,7 +230,7 @@ export default function AddProductPage() {
                     min="0"
                     value={formData.stock_quantity}
                     onChange={(e) => setFormData({ ...formData, stock_quantity: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
                   />
                 </div>
                 <div>
@@ -240,7 +240,7 @@ export default function AddProductPage() {
                     min="0"
                     value={formData.low_stock_threshold}
                     onChange={(e) => setFormData({ ...formData, low_stock_threshold: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all"
                   />
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function AddProductPage() {
             <div className="glass rounded-2xl p-6">
               <h2 className="text-sm font-semibold border-b border-border/50 pb-3 mb-5">Product Image</h2>
               
-              <div className="relative group rounded-xl border-2 border-dashed border-border overflow-hidden bg-background transition-all hover:border-brand-500/50 aspect-square flex flex-col items-center justify-center text-center cursor-pointer">
+              <div className="relative group rounded-xl border-2 border-dashed border-border overflow-hidden bg-background transition-all hover:border-orange-500/50 aspect-square flex flex-col items-center justify-center text-center cursor-pointer">
                 <input
                   type="file"
                   accept="image/*"
@@ -263,7 +263,7 @@ export default function AddProductPage() {
                   <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
                 ) : (
                   <div className="p-4">
-                    <UploadCloud className="w-8 h-8 text-muted mx-auto mb-2 group-hover:text-brand-400 transition-colors" />
+                    <UploadCloud className="w-8 h-8 text-muted mx-auto mb-2 group-hover:text-orange-400 transition-colors" />
                     <p className="text-xs font-medium text-muted">Click or drag to upload</p>
                     <p className="text-[10px] text-slate-600 mt-1">PNG, JPG up to 5MB</p>
                   </div>
@@ -281,7 +281,7 @@ export default function AddProductPage() {
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all appearance-none"
+                className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-orange-500 transition-all appearance-none"
               >
                 <option value="active">Active (Visible)</option>
                 <option value="inactive">Inactive (Hidden)</option>
@@ -303,7 +303,7 @@ export default function AddProductPage() {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 px-8 py-2.5 text-sm font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-2 px-8 py-2.5 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             {editId ? 'Save Changes' : 'Create Product'}

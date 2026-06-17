@@ -90,7 +90,7 @@ export default function InventoryPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="w-8 h-8 border-2 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin" />
       </div>
     );
   }
@@ -99,7 +99,7 @@ export default function InventoryPage() {
     <div className="space-y-6 animate-fade-in">
       {/* Realtime Banner */}
       {realtimeEvent && (
-        <div className="bg-brand-500/10 border border-brand-500/20 rounded-xl px-4 py-2.5 text-sm text-brand-300 flex items-center gap-2 animate-slide-up">
+        <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl px-4 py-2.5 text-sm text-orange-300 flex items-center gap-2 animate-slide-up">
           <RefreshCw className="w-4 h-4 animate-spin" />
           Live update: {realtimeEvent}
         </div>
@@ -113,7 +113,7 @@ export default function InventoryPage() {
         </div>
         <button
           onClick={() => router.push('/dashboard/add-product')}
-          className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all cursor-pointer"
+          className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all cursor-pointer"
         >
           <Package className="w-4 h-4" />
           Add Product
@@ -129,7 +129,7 @@ export default function InventoryPage() {
             placeholder="Search products..."
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600"
+            className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl text-sm text-foreground placeholder:text-muted"
           />
         </div>
 
@@ -187,8 +187,8 @@ export default function InventoryPage() {
                         {product.image_url ? (
                           <img src={product.image_url} alt={product.name} className="w-10 h-10 rounded-lg object-cover" />
                         ) : (
-                          <div className="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
-                            <Package className="w-5 h-5 text-brand-400" />
+                          <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                            <Package className="w-5 h-5 text-orange-400" />
                           </div>
                         )}
                         <div>
@@ -201,7 +201,7 @@ export default function InventoryPage() {
                     </td>
                     <td className="px-5 py-4 text-sm text-muted font-mono">{product.sku || '—'}</td>
                     <td className="px-5 py-4">
-                      <span className="text-xs font-medium text-brand-300 bg-brand-500/10 px-2.5 py-1 rounded-lg">
+                      <span className="text-xs font-medium text-orange-300 bg-orange-500/10 px-2.5 py-1 rounded-lg">
                         {product.category}
                       </span>
                     </td>
@@ -232,7 +232,7 @@ export default function InventoryPage() {
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           onClick={() => router.push(`/dashboard/add-product?edit=${product.id}`)}
-                          className="p-2 rounded-lg hover:bg-brand-500/10 text-muted hover:text-brand-400 transition-all cursor-pointer"
+                          className="p-2 rounded-lg hover:bg-orange-500/10 text-muted hover:text-orange-400 transition-all cursor-pointer"
                           title="Edit"
                         >
                           <Edit3 className="w-4 h-4" />

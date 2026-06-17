@@ -37,7 +37,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 rounded-2xl gradient-orange flex items-center justify-center mx-auto mb-4">
             <Package className="w-7 h-7 text-foreground" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
@@ -65,7 +65,7 @@ export default function LoginPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 transition-all"
+                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
                   autoComplete="email"
                 />
               </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 transition-all"
+                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-muted transition-all"
                   autoComplete="current-password"
                 />
                 <button
@@ -100,7 +100,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white gradient-orange rounded-xl hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -117,7 +117,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-muted">
               Don&apos;t have an account?{' '}
-              <Link href="/register" className="text-brand-400 font-semibold hover:text-brand-300 transition-colors">
+              <Link href="/register" className="text-orange-400 font-semibold hover:text-orange-300 transition-colors">
                 Create one <ArrowRight className="w-3 h-3 inline" />
               </Link>
             </p>

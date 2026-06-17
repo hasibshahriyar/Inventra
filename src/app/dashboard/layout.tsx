@@ -1,4 +1,4 @@
-'use client';
+'use client'; // Force hot-reload: 1
 
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 h-16 border-b border-border/50`}>
           {!collapsed && (
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg gradient-brand flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg gradient-orange flex items-center justify-center">
                 <Package className="w-4 h-4 text-foreground" />
               </div>
               <span className="text-lg font-bold tracking-tight">Inventra</span>
@@ -62,12 +62,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 onClick={() => router.push(item.href)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-brand-500/15 text-brand-400'
-                    : 'text-muted hover:bg-surface-hover hover:text-white'
+                    ? 'bg-orange-500/15 text-orange-400'
+                    : 'text-muted hover:bg-surface-hover hover:text-foreground'
                 } ${collapsed ? 'justify-center' : ''}`}
                 title={collapsed ? item.label : undefined}
               >
-                <item.icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-brand-400' : ''}`} />
+                <item.icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-orange-400' : ''}`} />
                 {!collapsed && <span>{item.label}</span>}
               </button>
             );
@@ -99,7 +99,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {!collapsed && user && (
           <div className="px-4 py-3 border-t border-border/50">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full gradient-brand flex items-center justify-center text-xs font-bold text-white">
+              <div className="w-8 h-8 rounded-full gradient-orange flex items-center justify-center text-xs font-bold text-white">
                 {user.email?.[0]?.toUpperCase() ?? 'U'}
               </div>
               <div className="min-w-0">
