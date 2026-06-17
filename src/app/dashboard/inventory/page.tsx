@@ -172,11 +172,11 @@ export default function InventoryPage() {
                 <tr className="border-b border-border/50">
                   <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Product</div></th>
                   <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">SKU</div></th>
-                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Category</div></th>
-                  <th className="px-5 py-3"><div className="flex justify-end text-xs font-semibold text-muted uppercase tracking-wider">Price</div></th>
-                  <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Stock</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Category</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Price</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-start text-xs font-semibold text-muted uppercase tracking-wider">Stock</div></th>
                   <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Status</div></th>
-                  <th className="px-5 py-3"><div className="flex justify-end text-xs font-semibold text-muted uppercase tracking-wider">Actions</div></th>
+                  <th className="px-5 py-3"><div className="flex justify-center text-xs font-semibold text-muted uppercase tracking-wider">Actions</div></th>
                 </tr>
               </thead>
               <tbody>
@@ -200,16 +200,16 @@ export default function InventoryPage() {
                       </div>
                     </td>
                     <td className="px-5 py-4 text-sm text-muted font-mono whitespace-nowrap">{product.sku || '—'}</td>
-                    <td className="px-5 py-4">
-                      <span className="text-xs font-medium text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-lg">
+                    <td className="px-5 py-4 text-center">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-blue-500/10 text-blue-400">
                         {product.category}
                       </span>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="flex justify-end text-sm font-semibold">${product.price.toFixed(2)}</div>
+                      <div className="flex justify-start text-sm font-semibold">${product.price.toFixed(2)}</div>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-start gap-2">
                         <button
                           onClick={() => handleStockChange(product, -1)}
                           className="w-7 h-7 rounded-lg bg-background border border-border flex items-center justify-center hover:bg-danger/10 hover:border-danger/30 hover:text-danger transition-all cursor-pointer"
@@ -225,19 +225,21 @@ export default function InventoryPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="px-5 py-4">
-                      <div className="flex justify-center">
-                        <span className={`inline-block whitespace-nowrap text-xs font-semibold px-2.5 py-1 rounded-lg ${statusColor(product.stock_quantity, product.low_stock_threshold)}`}>
-                          {{
-                            out_of_stock: 'Out of Stock',
-                            low_stock: 'Low Stock',
-                            in_stock: 'In Stock'
-                          }[getStockStatus(product.stock_quantity, product.low_stock_threshold)]}
-                        </span>
-                      </div>
+                    <td className="px-5 py-4 text-center">
+                      <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium ${
+                        getStockStatus(product.stock_quantity, product.low_stock_threshold) === 'in_stock' ? 'bg-success/15 text-success' :
+                        getStockStatus(product.stock_quantity, product.low_stock_threshold) === 'low_stock' ? 'bg-warning/15 text-warning' :
+                        'bg-danger/15 text-danger'
+                      }`}>
+                        {{
+                          out_of_stock: 'Out of Stock',
+                          low_stock: 'Low Stock',
+                          in_stock: 'In Stock'
+                        }[getStockStatus(product.stock_quantity, product.low_stock_threshold)]}
+                      </span>
                     </td>
-                    <td className="px-5 py-4">
-                      <div className="flex items-center justify-end gap-1.5">
+                    <td className="px-5 py-4 text-center">
+                      <div className="flex items-center justify-center gap-1.5">
                         <button
                           onClick={() => router.push(`/dashboard/add-product?edit=${product.id}`)}
                           className="p-2 rounded-lg hover:bg-blue-500/10 text-muted hover:text-blue-400 transition-all cursor-pointer"
