@@ -199,7 +199,7 @@ export default function InventoryPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-sm text-muted font-mono">{product.sku || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted font-mono whitespace-nowrap">{product.sku || '—'}</td>
                     <td className="px-5 py-4">
                       <span className="text-xs font-medium text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-lg">
                         {product.category}
