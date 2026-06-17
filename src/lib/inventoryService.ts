@@ -4,6 +4,7 @@
 // =============================================
 
 import { createClient } from '@/lib/supabase/client';
+import { generateMockEmbedding } from '@/lib/searchService';
 import type { Product } from '@/types';
 
 const supabase = createClient();
@@ -42,9 +43,12 @@ export const fetchProduct = async (id: string): Promise<Product | null> => {
 export const createProduct = async (
   product: Omit<Product, 'id' | 'created_at' | 'updated_at' | 'embedding'>
 ): Promise<{ data: Product | null; error: string | null }> => {
+  const textToEmbed = `${product.name} ${product.description || ''} ${product.category || ''}`;
+  const embedding = generateMockEmbedding(textToEmbed);
+
   const { data, error } = await supabase
     .from('products')
-    .insert(product)
+    .insert({ ...product, embedding })
     .select()
     .single();
 
@@ -56,9 +60,19 @@ export const updateProduct = async (
   id: string,
   updates: Partial<Product>
 ): Promise<{ error: string | null }> => {
+  const payload: any = { ...updates };
+
+  if (updates.name || updates.description || updates.category) {
+    const { data: existing } = await supabase.from('products').select('name, description, category').eq('id', id).single();
+    if (existing) {
+      const textToEmbed = `${updates.name || existing.name} ${updates.description || existing.description || ''} ${updates.category || existing.category || ''}`;
+      payload.embedding = generateMockEmbedding(textToEmbed);
+    }
+  }
+
   const { error } = await supabase
     .from('products')
-    .update(updates)
+    .update(payload)
     .eq('id', id);
 
   if (error) return { error: error.message };

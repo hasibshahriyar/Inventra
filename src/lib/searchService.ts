@@ -9,7 +9,7 @@ import type { SearchResult } from '@/types';
 const supabase = createClient();
 
 // Mock embedding generator (in production: use OpenAI/Gemini API)
-const generateMockEmbedding = (text: string): number[] => {
+export const generateMockEmbedding = (text: string): number[] => {
   const vector = new Array(1536).fill(0);
   for (let i = 0; i < text.length; i++) {
     vector[i % 1536] += text.charCodeAt(i) / 1000;
@@ -25,7 +25,7 @@ export const searchProductsWithAI = async (
 
   const { data, error } = await supabase.rpc('match_products', {
     query_embedding: queryEmbedding,
-    match_threshold: 0.1,
+    match_threshold: -1.0,
     match_count: 10,
   });
 
