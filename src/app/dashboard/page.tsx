@@ -68,8 +68,8 @@ export default function DashboardPage() {
   const stats = [
     { label: 'Total Products', value: totalProducts, icon: Package, color: 'text-orange-400', bg: 'bg-orange-500/10' },
     { label: 'Inventory Value', value: `$${totalValue.toLocaleString()}`, icon: DollarSign, color: 'text-success', bg: 'bg-success/10' },
-    { label: 'Low Stock', value: lowStockCount, icon: AlertTriangle, color: 'text-warning', bg: 'bg-warning/10' },
-    { label: 'Out of Stock', value: outOfStockCount, icon: XCircle, color: 'text-danger', bg: 'bg-danger/10' },
+    { label: 'Low Stock', value: lowStockCount, icon: AlertTriangle, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { label: 'Out of Stock', value: outOfStockCount, icon: XCircle, color: 'text-red-500', bg: 'bg-red-500/10' },
   ];
 
   return (
