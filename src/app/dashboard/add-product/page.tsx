@@ -127,13 +127,13 @@ export default function AddProductPage() {
       <div className="flex items-center gap-4">
         <button
           onClick={() => router.back()}
-          className="p-2 rounded-xl bg-surface-card border border-surface-border hover:bg-surface-hover transition-colors cursor-pointer"
+          className="p-2 rounded-xl bg-card border border-border hover:bg-surface-hover transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{editId ? 'Edit Product' : 'Add New Product'}</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Fill in the details below</p>
+          <p className="text-sm text-muted mt-0.5">Fill in the details below</p>
         </div>
       </div>
 
@@ -148,99 +148,99 @@ export default function AddProductPage() {
           {/* Main Info */}
           <div className="md:col-span-2 space-y-6">
             <div className="glass rounded-2xl p-6 space-y-5">
-              <h2 className="text-sm font-semibold border-b border-surface-border/50 pb-3">Basic Information</h2>
+              <h2 className="text-sm font-semibold border-b border-border/50 pb-3">Basic Information</h2>
               
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Product Name *</label>
+                <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Product Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 focus:border-brand-500 transition-all"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all"
                   placeholder="e.g. Wireless Noise-Cancelling Headphones"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">SKU</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">SKU</label>
                   <input
                     type="text"
                     value={formData.sku}
                     onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 focus:border-brand-500 font-mono transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 font-mono transition-all"
                     placeholder="PRD-001"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Category</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Category</label>
                   <input
                     type="text"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all"
                     placeholder="Electronics"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Description</label>
+                <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Description</label>
                 <textarea
                   rows={4}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 focus:border-brand-500 transition-all resize-none"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:border-brand-500 transition-all resize-none"
                   placeholder="Product description and details..."
                 />
               </div>
             </div>
 
             <div className="glass rounded-2xl p-6 space-y-5">
-              <h2 className="text-sm font-semibold border-b border-surface-border/50 pb-3">Pricing & Inventory</h2>
+              <h2 className="text-sm font-semibold border-b border-border/50 pb-3">Pricing & Inventory</h2>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Selling Price ($)</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Selling Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="0"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Cost Price ($)</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Cost Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
                     min="0"
                     value={formData.cost_price}
                     onChange={(e) => setFormData({ ...formData, cost_price: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Initial Stock</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Initial Stock</label>
                   <input
                     type="number"
                     min="0"
                     value={formData.stock_quantity}
                     onChange={(e) => setFormData({ ...formData, stock_quantity: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Low Stock Alert At</label>
+                  <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Low Stock Alert At</label>
                   <input
                     type="number"
                     min="0"
                     value={formData.low_stock_threshold}
                     onChange={(e) => setFormData({ ...formData, low_stock_threshold: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white focus:border-brand-500 transition-all"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all"
                   />
                 </div>
               </div>
@@ -250,9 +250,9 @@ export default function AddProductPage() {
           {/* Sidebar Info */}
           <div className="space-y-6">
             <div className="glass rounded-2xl p-6">
-              <h2 className="text-sm font-semibold border-b border-surface-border/50 pb-3 mb-5">Product Image</h2>
+              <h2 className="text-sm font-semibold border-b border-border/50 pb-3 mb-5">Product Image</h2>
               
-              <div className="relative group rounded-xl border-2 border-dashed border-surface-border overflow-hidden bg-surface-dark transition-all hover:border-brand-500/50 aspect-square flex flex-col items-center justify-center text-center cursor-pointer">
+              <div className="relative group rounded-xl border-2 border-dashed border-border overflow-hidden bg-background transition-all hover:border-brand-500/50 aspect-square flex flex-col items-center justify-center text-center cursor-pointer">
                 <input
                   type="file"
                   accept="image/*"
@@ -263,25 +263,25 @@ export default function AddProductPage() {
                   <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
                 ) : (
                   <div className="p-4">
-                    <UploadCloud className="w-8 h-8 text-slate-500 mx-auto mb-2 group-hover:text-brand-400 transition-colors" />
-                    <p className="text-xs font-medium text-slate-400">Click or drag to upload</p>
+                    <UploadCloud className="w-8 h-8 text-muted mx-auto mb-2 group-hover:text-brand-400 transition-colors" />
+                    <p className="text-xs font-medium text-muted">Click or drag to upload</p>
                     <p className="text-[10px] text-slate-600 mt-1">PNG, JPG up to 5MB</p>
                   </div>
                 )}
                 {previewUrl && (
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-0">
-                    <span className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg bg-surface-card">Change Image</span>
+                    <span className="text-xs font-semibold text-foreground px-3 py-1.5 rounded-lg bg-card">Change Image</span>
                   </div>
                 )}
               </div>
             </div>
 
             <div className="glass rounded-2xl p-6">
-              <h2 className="text-sm font-semibold border-b border-surface-border/50 pb-3 mb-5">Status</h2>
+              <h2 className="text-sm font-semibold border-b border-border/50 pb-3 mb-5">Status</h2>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-4 py-2.5 bg-surface-dark border border-surface-border rounded-xl text-sm text-white focus:border-brand-500 transition-all appearance-none"
+                className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-sm text-foreground focus:border-brand-500 transition-all appearance-none"
               >
                 <option value="active">Active (Visible)</option>
                 <option value="inactive">Inactive (Hidden)</option>
@@ -292,11 +292,11 @@ export default function AddProductPage() {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-3 pt-4 border-t border-surface-border/50">
+        <div className="flex justify-end gap-3 pt-4 border-t border-border/50">
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-6 py-2.5 text-sm font-semibold text-slate-300 glass rounded-xl hover:text-white transition-all cursor-pointer"
+            className="px-6 py-2.5 text-sm font-semibold text-muted glass rounded-xl hover:text-foreground transition-all cursor-pointer"
           >
             Cancel
           </button>

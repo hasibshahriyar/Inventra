@@ -27,26 +27,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   };
 
   return (
-    <div className="min-h-screen bg-surface-dark flex">
+    <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
       <aside
         className={`${
           collapsed ? 'w-[72px]' : 'w-64'
-        } h-screen sticky top-0 flex flex-col border-r border-surface-border/50 bg-surface-card transition-all duration-300`}
+        } h-screen sticky top-0 flex flex-col border-r border-border/50 bg-card transition-all duration-300`}
       >
         {/* Logo */}
-        <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 h-16 border-b border-surface-border/50`}>
+        <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 h-16 border-b border-border/50`}>
           {!collapsed && (
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg gradient-brand flex items-center justify-center">
-                <Package className="w-4 h-4 text-white" />
+                <Package className="w-4 h-4 text-foreground" />
               </div>
               <span className="text-lg font-bold tracking-tight">Inventra</span>
             </div>
           )}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-1.5 rounded-lg hover:bg-surface-hover text-slate-500 hover:text-white transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg hover:bg-surface-hover text-muted hover:text-foreground transition-colors cursor-pointer"
           >
             {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer ${
                   isActive
                     ? 'bg-brand-500/15 text-brand-400'
-                    : 'text-slate-400 hover:bg-surface-hover hover:text-white'
+                    : 'text-muted hover:bg-surface-hover hover:text-white'
                 } ${collapsed ? 'justify-center' : ''}`}
                 title={collapsed ? item.label : undefined}
               >
@@ -75,10 +75,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* Bottom Actions */}
-        <div className="px-3 py-4 space-y-1 border-t border-surface-border/50">
+        <div className="px-3 py-4 space-y-1 border-t border-border/50">
           <button
             onClick={toggleTheme}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-surface-hover hover:text-white transition-all cursor-pointer ${collapsed ? 'justify-center' : ''}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-muted hover:bg-surface-hover hover:text-foreground transition-all cursor-pointer ${collapsed ? 'justify-center' : ''}`}
             title={collapsed ? 'Toggle Theme' : undefined}
           >
             {theme === 'dark' ? <Sun className="w-5 h-5 shrink-0" /> : <Moon className="w-5 h-5 shrink-0" />}
@@ -87,7 +87,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           <button
             onClick={handleSignOut}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-danger/10 hover:text-danger transition-all cursor-pointer ${collapsed ? 'justify-center' : ''}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-muted hover:bg-danger/10 hover:text-danger transition-all cursor-pointer ${collapsed ? 'justify-center' : ''}`}
             title={collapsed ? 'Sign Out' : undefined}
           >
             <LogOut className="w-5 h-5 shrink-0" />
@@ -97,14 +97,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* User Badge */}
         {!collapsed && user && (
-          <div className="px-4 py-3 border-t border-surface-border/50">
+          <div className="px-4 py-3 border-t border-border/50">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full gradient-brand flex items-center justify-center text-xs font-bold text-white">
                 {user.email?.[0]?.toUpperCase() ?? 'U'}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-medium text-white truncate">{user.email}</p>
-                <p className="text-[10px] text-slate-500">Free Plan</p>
+                <p className="text-xs font-medium text-foreground truncate">{user.email}</p>
+                <p className="text-[10px] text-muted">Free Plan</p>
               </div>
             </div>
           </div>

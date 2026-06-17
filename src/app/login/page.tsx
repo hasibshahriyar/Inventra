@@ -33,15 +33,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-surface-dark flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-4">
-            <Package className="w-7 h-7 text-white" />
+            <Package className="w-7 h-7 text-foreground" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
-          <p className="text-slate-500 mt-1 text-sm">Sign in to your Inventra account</p>
+          <p className="text-muted mt-1 text-sm">Sign in to your Inventra account</p>
         </div>
 
         {/* Card */}
@@ -55,17 +55,17 @@ export default function LoginPage() {
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
                 <input
                   type="email"
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 transition-all"
+                  className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 transition-all"
                   autoComplete="email"
                 />
               </div>
@@ -73,25 +73,25 @@ export default function LoginPage() {
 
             {/* Password */}
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-11 py-3 bg-surface-dark border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600 transition-all"
+                  className="w-full pl-12 pr-12 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 transition-all"
                   autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors cursor-pointer"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors cursor-pointer"
                 >
-                  {showPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
 
           {/* Register Link */}
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted">
               Don&apos;t have an account?{' '}
               <Link href="/register" className="text-brand-400 font-semibold hover:text-brand-300 transition-colors">
                 Create one <ArrowRight className="w-3 h-3 inline" />

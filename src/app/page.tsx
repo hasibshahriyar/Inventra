@@ -16,19 +16,19 @@ export default function HomePage() {
   }, [user, loading, router]);
 
   return (
-    <div className="min-h-screen bg-surface-dark flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Nav */}
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-surface-border/50">
+      <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50">
         <div className="flex items-center gap-2">
           <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center">
-            <Package className="w-5 h-5 text-white" />
+            <Package className="w-5 h-5 text-foreground" />
           </div>
           <span className="text-xl font-bold tracking-tight">Inventra</span>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={() => router.push('/login')}
-            className="px-4 py-2 text-sm font-medium text-brand-300 hover:text-white transition-colors cursor-pointer"
+            className="px-4 py-2 text-sm font-medium text-brand-300 hover:text-foreground transition-colors cursor-pointer"
           >
             Sign in
           </button>
@@ -57,7 +57,7 @@ export default function HomePage() {
             <span className="gradient-brand-text">like never before</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
             Real-time stock tracking, AI-powered search, and a stunning dashboard —
             all in one beautiful platform.
           </p>
@@ -73,7 +73,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => router.push('/login')}
-              className="px-8 py-3.5 text-base font-semibold text-slate-300 glass rounded-2xl hover:text-white transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="px-8 py-3.5 text-base font-semibold text-muted glass rounded-2xl hover:text-foreground transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               Sign In
             </button>
@@ -93,15 +93,15 @@ export default function HomePage() {
               className="glass rounded-2xl p-5 text-center hover:border-brand-500/30 transition-all group cursor-default"
             >
               <f.icon className="w-6 h-6 text-brand-400 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-              <p className="text-sm font-semibold text-white">{f.label}</p>
-              <p className="text-xs text-slate-500 mt-1">{f.desc}</p>
+              <p className="text-sm font-semibold text-foreground">{f.label}</p>
+              <p className="text-xs text-muted mt-1">{f.desc}</p>
             </div>
           ))}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-6 text-xs text-slate-600 border-t border-surface-border/30">
+      <footer className="text-center py-6 text-xs text-slate-600 border-t border-border/30">
         Built with Next.js, Tailwind CSS v4 & Supabase — Inventra © {new Date().getFullYear()}
       </footer>
     </div>

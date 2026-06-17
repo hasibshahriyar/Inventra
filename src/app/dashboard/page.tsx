@@ -78,7 +78,7 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Overview of your inventory</p>
+          <p className="text-sm text-muted mt-0.5">Overview of your inventory</p>
         </div>
         <div className="flex items-center gap-2 text-xs text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">
           <Zap className="w-3.5 h-3.5" />
@@ -97,7 +97,7 @@ export default function DashboardPage() {
               <TrendingUp className="w-4 h-4 text-slate-600 group-hover:text-brand-400 transition-colors" />
             </div>
             <p className="text-2xl font-bold tracking-tight">{stat.value}</p>
-            <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
+            <p className="text-xs text-muted mt-1">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <div className="h-[250px] flex items-center justify-center text-sm text-slate-500">
+            <div className="h-[250px] flex items-center justify-center text-sm text-muted">
               No products yet — add some to see charts!
             </div>
           )}
@@ -162,7 +162,7 @@ export default function DashboardPage() {
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <div className="h-[250px] flex items-center justify-center text-sm text-slate-500">
+            <div className="h-[250px] flex items-center justify-center text-sm text-muted">
               No categories yet
             </div>
           )}
@@ -172,7 +172,7 @@ export default function DashboardPage() {
               {categoryData.map((cat, i) => (
                 <div key={cat.name} className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ background: CHART_COLORS[i % CHART_COLORS.length] }} />
-                  <span className="text-xs text-slate-400">{cat.name} ({cat.value})</span>
+                  <span className="text-xs text-muted">{cat.name} ({cat.value})</span>
                 </div>
               ))}
             </div>
@@ -189,11 +189,11 @@ export default function DashboardPage() {
         {activity.length > 0 ? (
           <div className="space-y-3">
             {activity.map((act) => (
-              <div key={act.id} className="flex items-center justify-between py-2 border-b border-surface-border/30 last:border-0">
+              <div key={act.id} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
                 <div>
                   <p className="text-sm font-medium">{act.action}</p>
                   {act.product_name && (
-                    <p className="text-xs text-slate-500">{act.product_name} — {act.details}</p>
+                    <p className="text-xs text-muted">{act.product_name} — {act.details}</p>
                   )}
                 </div>
                 <span className="text-xs text-slate-600 shrink-0 ml-4">
@@ -203,7 +203,7 @@ export default function DashboardPage() {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-slate-500 text-center py-8">
+          <p className="text-sm text-muted text-center py-8">
             No activity yet — start adding products!
           </p>
         )}

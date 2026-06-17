@@ -109,7 +109,7 @@ export default function InventoryPage() {
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Inventory</h1>
-          <p className="text-sm text-slate-500 mt-0.5">{products.length} products total</p>
+          <p className="text-sm text-muted mt-0.5">{products.length} products total</p>
         </div>
         <button
           onClick={() => router.push('/dashboard/add-product')}
@@ -123,43 +123,43 @@ export default function InventoryPage() {
       {/* Filters */}
       <div className="flex flex-wrap gap-3">
         <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
           <input
             type="text"
             placeholder="Search products..."
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-surface-card border border-surface-border rounded-xl text-sm text-white placeholder:text-slate-600"
+            className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600"
           />
         </div>
 
         <div className="relative">
-          <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="pl-9 pr-8 py-2.5 bg-surface-card border border-surface-border rounded-xl text-sm text-white appearance-none cursor-pointer"
+            className="pl-9 pr-8 py-2.5 bg-card border border-border rounded-xl text-sm text-foreground appearance-none cursor-pointer"
           >
             {categories.map(c => (
               <option key={c} value={c}>{c === 'all' ? 'All Categories' : c}</option>
             ))}
           </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted pointer-events-none" />
         </div>
 
         <div className="relative">
-          <AlertTriangle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <AlertTriangle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="pl-9 pr-8 py-2.5 bg-surface-card border border-surface-border rounded-xl text-sm text-white appearance-none cursor-pointer"
+            className="pl-9 pr-8 py-2.5 bg-card border border-border rounded-xl text-sm text-foreground appearance-none cursor-pointer"
           >
             <option value="all">All Status</option>
             <option value="ok">In Stock</option>
             <option value="low">Low Stock</option>
             <option value="out">Out of Stock</option>
           </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted pointer-events-none" />
         </div>
       </div>
 
@@ -169,19 +169,19 @@ export default function InventoryPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-surface-border/50">
-                  <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Product</th>
-                  <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">SKU</th>
-                  <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Category</th>
-                  <th className="text-right text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Price</th>
-                  <th className="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Stock</th>
-                  <th className="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Status</th>
-                  <th className="text-right text-xs font-semibold text-slate-400 uppercase tracking-wider px-5 py-3">Actions</th>
+                <tr className="border-b border-border/50">
+                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Product</th>
+                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">SKU</th>
+                  <th className="text-left text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Category</th>
+                  <th className="text-right text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Price</th>
+                  <th className="text-center text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Stock</th>
+                  <th className="text-center text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Status</th>
+                  <th className="text-right text-xs font-semibold text-muted uppercase tracking-wider px-5 py-3">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map((product) => (
-                  <tr key={product.id} className="border-b border-surface-border/30 last:border-0 hover:bg-surface-hover/50 transition-colors">
+                  <tr key={product.id} className="border-b border-border/30 last:border-0 hover:bg-surface-hover/50 transition-colors">
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
                         {product.image_url ? (
@@ -194,12 +194,12 @@ export default function InventoryPage() {
                         <div>
                           <p className="text-sm font-semibold">{product.name}</p>
                           {product.description && (
-                            <p className="text-xs text-slate-500 truncate max-w-[200px]">{product.description}</p>
+                            <p className="text-xs text-muted truncate max-w-[200px]">{product.description}</p>
                           )}
                         </div>
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-sm text-slate-400 font-mono">{product.sku || '—'}</td>
+                    <td className="px-5 py-4 text-sm text-muted font-mono">{product.sku || '—'}</td>
                     <td className="px-5 py-4">
                       <span className="text-xs font-medium text-brand-300 bg-brand-500/10 px-2.5 py-1 rounded-lg">
                         {product.category}
@@ -210,14 +210,14 @@ export default function InventoryPage() {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleStockChange(product, -1)}
-                          className="w-7 h-7 rounded-lg bg-surface-dark border border-surface-border flex items-center justify-center hover:bg-danger/10 hover:border-danger/30 hover:text-danger transition-all cursor-pointer"
+                          className="w-7 h-7 rounded-lg bg-background border border-border flex items-center justify-center hover:bg-danger/10 hover:border-danger/30 hover:text-danger transition-all cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
                         <span className="text-sm font-bold w-10 text-center">{product.stock_quantity}</span>
                         <button
                           onClick={() => handleStockChange(product, 1)}
-                          className="w-7 h-7 rounded-lg bg-surface-dark border border-surface-border flex items-center justify-center hover:bg-success/10 hover:border-success/30 hover:text-success transition-all cursor-pointer"
+                          className="w-7 h-7 rounded-lg bg-background border border-border flex items-center justify-center hover:bg-success/10 hover:border-success/30 hover:text-success transition-all cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -232,14 +232,14 @@ export default function InventoryPage() {
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           onClick={() => router.push(`/dashboard/add-product?edit=${product.id}`)}
-                          className="p-2 rounded-lg hover:bg-brand-500/10 text-slate-400 hover:text-brand-400 transition-all cursor-pointer"
+                          className="p-2 rounded-lg hover:bg-brand-500/10 text-muted hover:text-brand-400 transition-all cursor-pointer"
                           title="Edit"
                         >
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDelete(product)}
-                          className="p-2 rounded-lg hover:bg-danger/10 text-slate-400 hover:text-danger transition-all cursor-pointer"
+                          className="p-2 rounded-lg hover:bg-danger/10 text-muted hover:text-danger transition-all cursor-pointer"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -255,7 +255,7 @@ export default function InventoryPage() {
       ) : (
         <div className="glass rounded-2xl p-12 text-center">
           <Package className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <p className="text-lg font-semibold text-slate-400">No products found</p>
+          <p className="text-lg font-semibold text-muted">No products found</p>
           <p className="text-sm text-slate-600 mt-1">
             {filter || categoryFilter !== 'all' ? 'Try adjusting your filters' : 'Add your first product to get started'}
           </p>

@@ -21,14 +21,15 @@
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
 
-  /* Surface Colors */
-  --color-surface-dark: #0a0a0f;
-  --color-surface-card: #12121a;
-  --color-surface-elevated: #1a1a25;
-  --color-surface-border: #2a2a3a;
+  /* Semantic Theme Colors */
+  --color-foreground: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-background: #0a0a0f;
+  --color-card: #12121a;
+  --color-border: #2a2a3a;
   --color-surface-hover: #22222f;
 
-  /* Semantic Colors */
+  /* State Colors */
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
@@ -80,8 +81,8 @@ html {
 }
 
 body {
-  background: var(--color-surface-dark);
-  color: #e2e8f0;
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -104,7 +105,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-border);
+  background: var(--color-border);
   border-radius: 3px;
 }
 
@@ -158,16 +159,12 @@ body {
    Light Mode Overrides
    ============================================= */
 .light-mode {
-  --color-surface-dark: #f8fafc;
-  --color-surface-card: #ffffff;
-  --color-surface-elevated: #f1f5f9;
-  --color-surface-border: #e2e8f0;
+  --color-foreground: #1e293b;
+  --color-muted: #64748b;
+  --color-background: #f8fafc;
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
   --color-surface-hover: #f1f5f9;
-}
-
-.light-mode body,
-.light-mode {
-  color: #1e293b;
 }
 
 .light-mode .glass {
@@ -180,11 +177,16 @@ body {
   border-color: rgba(0, 0, 0, 0.06);
 }
 
+.light-mode .glass-hover:hover {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
 /* =============================================
    Input Focus Ring
    ============================================= */
-input:focus, textarea:focus, select:focus {
+input:not(.border-none):focus, textarea:focus, select:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
-  border-color: var(--color-brand-500) !important;
+  border-color: var(--color-brand-500);
 }
