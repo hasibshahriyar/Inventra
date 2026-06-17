@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createProduct, updateProduct, fetchProduct, uploadProductImage, logActivity } from '@/lib/inventoryService';
 import { useAuth } from '@/context/AuthContext';
 import { Package, Image as ImageIcon, Save, ArrowLeft, Loader2, UploadCloud } from 'lucide-react';
 import type { Product } from '@/types';
 
-export default function AddProductPage() {
+function AddProductContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const editId = searchParams.get('edit');
@@ -311,5 +311,17 @@ export default function AddProductPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function AddProductPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
+      </div>
+    }>
+      <AddProductContent />
+    </Suspense>
   );
 }
