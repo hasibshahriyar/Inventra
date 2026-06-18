@@ -100,8 +100,10 @@ export default function SettingsPage() {
     if (error) {
       setDeleteError(error);
       setIsDeletingAccount(false);
+    } else {
+      // Successfully deleted and signed out. Force a page reload to login.
+      window.location.href = '/login';
     }
-    // If successful, the auth state change will automatically sign out and redirect
   };
 
   return (
