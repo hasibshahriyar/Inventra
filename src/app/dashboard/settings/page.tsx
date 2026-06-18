@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
-import { User, Moon, Sun, Shield, Bell, Key, LogOut, Construction, Save, Loader2, Camera } from 'lucide-react';
+import { User, Moon, Sun, Shield, Bell, Key, LogOut, Construction, Save, Loader2, Camera, Trash2 } from 'lucide-react';
 import { uploadProductImage } from '@/lib/inventoryService';
 
 type Tab = 'profile' | 'appearance' | 'notifications' | 'security';
 
 export default function SettingsPage() {
   const { theme, toggleTheme } = useTheme();
-  const { user, signOut, updateProfile } = useAuth();
+  const { user, signOut, updateProfile, deleteAccount } = useAuth();
   const [activeTab, setActiveTab] = useState<Tab>('profile');
 
   // Form states
@@ -23,6 +23,12 @@ export default function SettingsPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSavingPassword, setIsSavingPassword] = useState(false);
   const [passwordMessage, setPasswordMessage] = useState('');
+
+  // Delete Account states
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState('');
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
 
   const tabs: { id: Tab; label: string; icon: any }[] = [
     { id: 'profile', label: 'Account Profile', icon: User },
@@ -84,6 +90,18 @@ export default function SettingsPage() {
     }
     setIsSavingPassword(false);
     setTimeout(() => setPasswordMessage(''), 3000);
+  };
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmation !== 'delete') return;
+    setIsDeletingAccount(true);
+    setDeleteError('');
+    const { error } = await deleteAccount();
+    if (error) {
+      setDeleteError(error);
+      setIsDeletingAccount(false);
+    }
+    // If successful, the auth state change will automatically sign out and redirect
   };
 
   return (
@@ -316,11 +334,57 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => signOut()}
-                    className="flex items-center gap-2 px-4 py-2 bg-danger/10 text-danger border border-danger/20 rounded-xl text-sm font-medium hover:bg-danger/20 transition-colors cursor-pointer"
+                    className="flex items-center gap-2 px-4 py-2 bg-surface text-foreground border border-border rounded-xl text-sm font-medium hover:bg-surface-hover transition-colors cursor-pointer"
                   >
                     <LogOut className="w-4 h-4" />
                     Sign Out
                   </button>
+                </div>
+
+                {/* Delete Account */}
+                <div className="flex flex-col md:flex-row md:items-start justify-between pt-6 mt-6 border-t border-border/50">
+                  <div className="mb-4 md:mb-0">
+                    <h3 className="font-medium text-foreground mb-1">Delete Account</h3>
+                    <p className="text-sm text-muted max-w-sm">
+                      Permanently delete your account and all of your data. This action cannot be undone.
+                    </p>
+                  </div>
+                  {!isDeleting ? (
+                    <button
+                      onClick={() => setIsDeleting(true)}
+                      className="flex items-center gap-2 px-4 py-2 bg-danger/10 text-danger border border-danger/20 rounded-xl text-sm font-medium hover:bg-danger/20 transition-colors cursor-pointer whitespace-nowrap"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Delete Account
+                    </button>
+                  ) : (
+                    <div className="bg-danger/5 border border-danger/20 rounded-xl p-4 w-full md:max-w-xs">
+                      <p className="text-sm text-foreground mb-3 font-medium">To confirm, type <span className="font-bold text-danger">delete</span> below:</p>
+                      <input
+                        type="text"
+                        value={deleteConfirmation}
+                        onChange={(e) => setDeleteConfirmation(e.target.value)}
+                        placeholder="Type 'delete'"
+                        className="w-full px-3 py-2 bg-background border border-danger/30 rounded-lg text-sm mb-3 focus:border-danger focus:ring-1 focus:ring-danger outline-none transition-all"
+                      />
+                      {deleteError && <p className="text-xs text-danger mb-3">{deleteError}</p>}
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => { setIsDeleting(false); setDeleteConfirmation(''); setDeleteError(''); }}
+                          className="flex-1 px-3 py-2 bg-surface border border-border rounded-lg text-sm font-medium hover:bg-surface-hover transition-colors cursor-pointer"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          onClick={handleDeleteAccount}
+                          disabled={deleteConfirmation !== 'delete' || isDeletingAccount}
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-danger text-white rounded-lg text-sm font-medium hover:bg-danger/90 transition-colors disabled:opacity-50 cursor-pointer"
+                        >
+                          {isDeletingAccount ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

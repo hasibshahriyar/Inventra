@@ -12,6 +12,7 @@ interface AuthContextType {
   verifyOtp: (email: string, token: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: { password?: string; data?: { full_name?: string; avatar_url?: string } }) => Promise<{ error: string | null }>;
+  deleteAccount: () => Promise<{ error: string | null }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -63,8 +64,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error: error?.message ?? null };
   }, [supabase.auth]);
 
+  const deleteAccount = useCallback(async () => {
+    const { error } = await supabase.rpc('delete_user');
+    if (error) return { error: error.message };
+    await supabase.auth.signOut();
+    setUser(null);
+    return { error: null };
+  }, [supabase]);
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, verifyOtp, signOut, updateProfile }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, verifyOtp, signOut, updateProfile, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );
